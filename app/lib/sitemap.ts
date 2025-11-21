@@ -113,6 +113,11 @@ export function generateStaticUrls(): SitemapUrl[] {
       priority: 0.8,
     },
     {
+      loc: "/case-studies",
+      changefreq: "monthly" as const,
+      priority: 0.7,
+    },
+    {
       loc: "/faq",
       changefreq: "monthly" as const,
       priority: 0.7,

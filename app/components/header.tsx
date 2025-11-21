@@ -18,6 +18,7 @@ import {
   ScrollText,
   HelpCircle,
   Users,
+  Briefcase,
 } from "lucide-react";
 import { ThemeSwitcher } from "./theme-switcher";
 import { MobileNav } from "./mobile-nav";
@@ -48,6 +49,7 @@ export function Header() {
 
   const resourceLinks = [
     { name: "Resources Hub", slug: "/resources", icon: BookOpen },
+    { name: "Case Studies", slug: "/case-studies", icon: Briefcase },
     { name: "FAQ", slug: "/faq", icon: HelpCircle },
     { name: "About Us", slug: "/about", icon: Info },
     { name: "Contact", slug: "/contact", icon: Mail },

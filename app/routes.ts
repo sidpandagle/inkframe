@@ -9,6 +9,7 @@ export default [
   route("compliance", "routes/compliance.tsx"),
   route("compliance/:slug", "routes/compliance.$slug.tsx"),
   route("resources", "routes/resources.tsx"),
+  route("case-studies", "routes/case-studies.tsx"),
   route("faq", "routes/faq.tsx"),
   route("about", "routes/about.tsx"),
   route("contact", "routes/contact.tsx"),

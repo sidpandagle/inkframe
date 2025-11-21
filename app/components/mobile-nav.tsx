@@ -17,6 +17,8 @@ import {
   Lock,
   ScrollText,
   Users,
+  Briefcase,
+  HelpCircle,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -63,6 +65,9 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
   ];
 
   const resourceLinks = [
+    { name: "Resources Hub", slug: "/resources", icon: BookOpen },
+    { name: "Case Studies", slug: "/case-studies", icon: Briefcase },
+    { name: "FAQ", slug: "/faq", icon: HelpCircle },
     { name: "About Us", slug: "/about", icon: Info },
     { name: "Contact", slug: "/contact", icon: Mail },
     { name: "Terms of Service", slug: "/terms", icon: FileCheck },
