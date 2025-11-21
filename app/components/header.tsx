@@ -19,12 +19,33 @@ import {
 } from "lucide-react";
 import { ThemeSwitcher } from "./theme-switcher";
 import { MobileNav } from "./mobile-nav";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import logoLight from "./logo-icon-light.svg";
 import logoDark from "./logo-icon-dark.svg";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [newsDropdownOpen, setNewsDropdownOpen] = useState(false);
+  const [resourcesDropdownOpen, setResourcesDropdownOpen] = useState(false);
+  const newsDropdownRef = useRef<HTMLDivElement>(null);
+  const resourcesDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (newsDropdownRef.current && !newsDropdownRef.current.contains(event.target as Node)) {
+        setNewsDropdownOpen(false);
+      }
+      if (resourcesDropdownRef.current && !resourcesDropdownRef.current.contains(event.target as Node)) {
+        setResourcesDropdownOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const newsCategories = [
     { name: "All Articles", slug: "/articles", icon: BookOpen },
@@ -78,19 +99,23 @@ export function Header() {
               </Link>
 
               {/* News Dropdown */}
-              <div className="relative group/news">
-                <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-smooth">
-                  <BookOpen className="w-4 h-4 group-hover/news:scale-110 transition-transform" />
+              <div className="relative" ref={newsDropdownRef}>
+                <button
+                  onClick={() => setNewsDropdownOpen(!newsDropdownOpen)}
+                  className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-smooth"
+                >
+                  <BookOpen className="w-4 h-4 transition-transform" />
                   <span>News</span>
-                  <ChevronDown className="w-3 h-3 group-hover/news:rotate-180 transition-transform" />
+                  <ChevronDown className={`w-3 h-3 transition-transform ${newsDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
-                <div className="absolute top-full left-0 mt-2 w-64 bg-background border border-border rounded-lg shadow-xl opacity-0 invisible group-hover/news:opacity-100 group-hover/news:visible transition-all duration-200 py-2">
+                <div className={`absolute top-full left-0 mt-2 w-64 bg-background border border-border rounded-lg shadow-xl transition-all duration-200 py-2 ${newsDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                   {newsCategories.map((category) => {
                     const Icon = category.icon;
                     return (
                       <Link
                         key={category.slug}
                         to={category.slug}
+                        onClick={() => setNewsDropdownOpen(false)}
                         className="flex items-center gap-3 px-4 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors"
                       >
                         <Icon className="w-4 h-4" />
@@ -110,19 +135,23 @@ export function Header() {
               </Link>
 
               {/* Resources Dropdown */}
-              <div className="relative group/resources">
-                <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-smooth">
-                  <Info className="w-4 h-4 group-hover/resources:scale-110 transition-transform" />
+              <div className="relative" ref={resourcesDropdownRef}>
+                <button
+                  onClick={() => setResourcesDropdownOpen(!resourcesDropdownOpen)}
+                  className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-smooth"
+                >
+                  <Info className="w-4 h-4 transition-transform" />
                   <span>Resources</span>
-                  <ChevronDown className="w-3 h-3 group-hover/resources:rotate-180 transition-transform" />
+                  <ChevronDown className={`w-3 h-3 transition-transform ${resourcesDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
-                <div className="absolute top-full left-0 mt-2 w-56 bg-background border border-border rounded-lg shadow-xl opacity-0 invisible group-hover/resources:opacity-100 group-hover/resources:visible transition-all duration-200 py-2">
+                <div className={`absolute top-full left-0 mt-2 w-56 bg-background border border-border rounded-lg shadow-xl transition-all duration-200 py-2 ${resourcesDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                   {resourceLinks.map((link) => {
                     const Icon = link.icon;
                     return (
                       <Link
                         key={link.slug}
                         to={link.slug}
+                        onClick={() => setResourcesDropdownOpen(false)}
                         className="flex items-center gap-3 px-4 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors"
                       >
                         <Icon className="w-4 h-4" />
