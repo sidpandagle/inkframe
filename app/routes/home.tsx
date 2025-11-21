@@ -1,7 +1,16 @@
 import type { Route } from "./+types/home";
 import { Button } from "~/components/ui/button";
 import { ArticleCard } from "~/components/article-card";
-import { getFeaturedArticles, getAllArticles } from "~/lib/data";
+import { SearchBar } from "~/components/search-bar";
+import { TrustedBy } from "~/components/trusted-by";
+import { BreakingNewsCarousel } from "~/components/breaking-news-carousel";
+import { CategoriesShowcase, getDefaultCategories } from "~/components/categories-showcase";
+import {
+  getAllArticles,
+  getBreakingNewsArticles,
+  getTrendingArticles,
+  getCategoryCount,
+} from "~/lib/data";
 import { Link } from "react-router";
 import { TrendingUp, Shield, FileText, ArrowRight, Zap } from "lucide-react";
 
@@ -22,18 +31,35 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export async function loader() {
-  const featuredArticles = getFeaturedArticles();
+  const breakingNews = getBreakingNewsArticles(4);
+  const trendingArticles = getTrendingArticles(6);
   const allArticles = getAllArticles();
-  const recentArticles = allArticles.slice(0, 6);
+  const recentArticles = allArticles.slice(0, 9);
+
+  // Get category counts (icons will be added on client side)
+  const categoryCounts = getDefaultCategories().map(cat => ({
+    name: cat.name,
+    slug: cat.slug,
+    count: getCategoryCount(cat.slug),
+    color: cat.color,
+  }));
 
   return {
-    featuredArticles,
+    breakingNews,
+    trendingArticles,
     recentArticles,
+    categoryCounts,
   };
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  const { featuredArticles, recentArticles } = loaderData;
+  const { breakingNews, trendingArticles, recentArticles, categoryCounts } = loaderData;
+
+  // Merge category counts with icons on client side
+  const categories = getDefaultCategories().map(cat => ({
+    ...cat,
+    count: categoryCounts.find(c => c.slug === cat.slug)?.count || 0,
+  }));
 
   return (
     <div>
@@ -64,8 +90,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             </div>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-              Navigate the World of{" "}
-              <span className="gradient-text">Crypto Regulation</span>
+              Latest News, Essential Insights &{" "}
+              <span className="gradient-text">Actionable Trends</span>
             </h1>
 
             <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground mb-6 md:mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
@@ -73,7 +99,12 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               with authoritative analysis from industry leaders.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center animate-fade-in-up mb-10 md:mb-12" style={{ animationDelay: '0.3s' }}>
+            {/* Search Bar */}
+            <div className="mb-10 md:mb-12 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+              <SearchBar />
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center animate-fade-in-up mb-10 md:mb-12" style={{ animationDelay: '0.35s' }}>
               <Button asChild size="lg" className="gradient-primary text-white hover:shadow-xl hover:scale-105 transition-smooth text-base">
                 <Link to="/articles" className="flex items-center gap-2">
                   <span>Explore Articles</span>
@@ -88,8 +119,11 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               </Button>
             </div>
 
+            {/* Trusted By Section */}
+            <TrustedBy />
+
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+            <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-2xl mx-auto mt-12 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
               <div className="text-center">
                 <div className="text-2xl md:text-3xl lg:text-4xl font-bold gradient-text mb-1 md:mb-2">250+</div>
                 <div className="text-xs md:text-sm text-muted-foreground">Expert Articles</div>
@@ -107,39 +141,70 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         </div>
       </section>
 
-      {/* Featured Articles */}
-      {featuredArticles.length > 0 && (
-        <section className="container mx-auto px-4 py-20">
+      {/* Breaking News Carousel */}
+      {breakingNews.length > 0 && (
+        <section className="container mx-auto px-4 py-16 md:py-20">
+          <BreakingNewsCarousel articles={breakingNews} />
+        </section>
+      )}
+
+      {/* Trending Articles */}
+      {trendingArticles.length > 0 && (
+        <section className="container mx-auto px-4 py-16 md:py-20 bg-muted/30">
           <div className="flex items-center gap-3 mb-8">
-            <TrendingUp className="w-8 h-8 text-primary" />
-            <h2 className="text-4xl font-bold">Featured Articles</h2>
+            <div className="p-2 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg">
+              <TrendingUp className="w-6 h-6 text-primary" />
+            </div>
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold">Trending Now</h2>
+              <p className="text-sm text-muted-foreground mt-1">Most popular articles this week</p>
+            </div>
           </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            {featuredArticles.map((article) => (
-              <ArticleCard key={article.id} article={article} featured />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {trendingArticles.map((article) => (
+              <ArticleCard key={article.id} article={article} />
             ))}
           </div>
         </section>
       )}
 
-      {/* Recent Articles */}
-      <section className="container mx-auto px-4 py-20">
+      {/* Categories Showcase */}
+      <section className="container mx-auto px-4 py-16 md:py-24">
+        <CategoriesShowcase categories={categories} />
+      </section>
+
+      {/* Latest Insights */}
+      <section className="container mx-auto px-4 py-16 md:py-20 bg-muted/30">
         <div className="flex justify-between items-center mb-10">
           <div className="flex items-center gap-3">
-            <FileText className="w-8 h-8 text-primary" />
-            <h2 className="text-4xl font-bold">Latest Insights</h2>
+            <div className="p-2 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg">
+              <FileText className="w-6 h-6 text-primary" />
+            </div>
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold">Latest Insights</h2>
+              <p className="text-sm text-muted-foreground mt-1">Fresh analysis and expert commentary</p>
+            </div>
           </div>
-          <Button asChild variant="outline" className="border-2">
+          <Button asChild variant="outline" className="border-2 hidden md:flex">
             <Link to="/articles" className="flex items-center gap-2">
               <span>View All</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </Button>
         </div>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {recentArticles.map((article) => (
             <ArticleCard key={article.id} article={article} />
           ))}
+        </div>
+        {/* Mobile View All Button */}
+        <div className="mt-8 md:hidden">
+          <Button asChild variant="outline" className="border-2 w-full">
+            <Link to="/articles" className="flex items-center justify-center gap-2">
+              <span>View All Articles</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </Button>
         </div>
       </section>
 

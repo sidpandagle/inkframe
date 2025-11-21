@@ -57,3 +57,36 @@ export function getAllTags(): string[] {
   });
   return Array.from(tags).sort();
 }
+
+export function getBreakingNewsArticles(limit: number = 4): Article[] {
+  // Get the most recent articles as "breaking news"
+  return getAllArticles().slice(0, limit);
+}
+
+export function getTrendingArticles(limit: number = 6): Article[] {
+  // For now, return featured articles or most recent
+  const featured = getFeaturedArticles();
+  if (featured.length >= limit) {
+    return featured.slice(0, limit);
+  }
+
+  // Fill with recent articles if not enough featured
+  const recent = getAllArticles();
+  const combined = [...featured];
+
+  for (const article of recent) {
+    if (combined.length >= limit) break;
+    if (!combined.find(a => a.id === article.id)) {
+      combined.push(article);
+    }
+  }
+
+  return combined.slice(0, limit);
+}
+
+export function getCategoryCount(categorySlug: string): number {
+  const normalizedCategory = categorySlug.toLowerCase();
+  return data.articles.filter(article =>
+    article.tags.some(tag => tag.toLowerCase().includes(normalizedCategory))
+  ).length;
+}
