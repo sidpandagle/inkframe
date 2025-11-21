@@ -1,0 +1,128 @@
+{
+  "articles": [
+    {
+      "id": "mica-compliance-wallet-providers-2025",
+      "title": "MiCA Compliance for Wallet Providers: Statistics 2025",
+      "slug": "mica-compliance-wallet-providers-2025",
+      "author": "Barry Elad",
+      "date": "2025-11-20",
+      "summary": "A comprehensive analysis of the Markets in Crypto-Assets (MiCA) regulation and its impact on crypto wallet providers across the European Union.",
+      "content": "<p>The Markets in Crypto-Assets (MiCA) regulation represents a landmark shift in European crypto regulation. As of 2025, wallet providers must navigate a complex landscape of compliance requirements.</p><h2>Key Statistics</h2><p>Over 500 wallet providers have registered under MiCA, with 78% reporting increased compliance costs. The regulation has set new standards for:</p><ul><li>Customer protection measures</li><li>Operational resilience requirements</li><li>Cybersecurity standards</li><li>Transparency obligations</li></ul><h2>Impact on the Industry</h2><p>The regulation has created a more unified regulatory framework across EU member states, reducing regulatory arbitrage but increasing operational complexity for providers.</p><p>Compliance costs have increased by an average of 35% for medium-sized providers, with smaller providers facing proportionally higher burdens.</p><h2>Looking Forward</h2><p>As the regulation matures, we expect to see consolidation in the market and increased sophistication in compliance technologies.</p>",
+      "tags": ["MiCA", "Compliance", "Wallets", "EU Regulation"],
+      "featured": true
+    },
+    {
+      "id": "stablecoin-regulations-global-overview",
+      "title": "Stablecoin Regulations: A Global Overview",
+      "slug": "stablecoin-regulations-global-overview",
+      "author": "Sarah Chen",
+      "date": "2025-11-15",
+      "summary": "An in-depth look at how different jurisdictions are approaching stablecoin regulation, from the US to Singapore.",
+      "content": "<p>Stablecoins have become a critical component of the crypto ecosystem, with a total market cap exceeding $150 billion in 2025. However, regulatory approaches vary significantly across jurisdictions.</p><h2>United States</h2><p>The US has taken a fragmented approach, with multiple agencies claiming jurisdiction. Recent proposals include:</p><ul><li>Federal stablecoin legislation pending in Congress</li><li>SEC oversight for certain stablecoins deemed securities</li><li>OCC guidance for bank-issued stablecoins</li></ul><h2>European Union</h2><p>Under MiCA, stablecoins are classified as either e-money tokens (EMTs) or asset-referenced tokens (ARTs), each with distinct requirements.</p><h2>Singapore</h2><p>The Monetary Authority of Singapore (MAS) has introduced a licensing regime specifically for stablecoin issuers, focusing on:</p><ul><li>Reserve requirements</li><li>Redemption rights</li><li>Disclosure obligations</li></ul><h2>Conclusion</h2><p>The regulatory landscape for stablecoins is rapidly evolving, with jurisdictions balancing innovation with financial stability concerns.</p>",
+      "tags": ["Stablecoins", "Global Regulation", "MiCA", "MAS"],
+      "featured": true
+    },
+    {
+      "id": "defi-legal-challenges-2025",
+      "title": "DeFi Legal Challenges: Navigating the Regulatory Gray Zone",
+      "slug": "defi-legal-challenges-2025",
+      "author": "Michael Rodriguez",
+      "date": "2025-11-10",
+      "summary": "Exploring the unique legal challenges facing decentralized finance protocols and their developers in 2025.",
+      "content": "<p>Decentralized Finance (DeFi) continues to challenge traditional regulatory frameworks. With over $100 billion in total value locked, regulators are increasingly focusing on this sector.</p><h2>Key Regulatory Questions</h2><p>The primary challenges include:</p><ul><li>Who is responsible for compliance in a decentralized protocol?</li><li>When do DeFi tokens constitute securities?</li><li>How do AML/KYC requirements apply to non-custodial platforms?</li></ul><h2>Recent Enforcement Actions</h2><p>2025 has seen several high-profile enforcement actions against DeFi protocols, including:</p><ul><li>SEC charges against unregistered securities offerings</li><li>CFTC actions on derivatives trading</li><li>FinCEN investigations of money transmission violations</li></ul><h2>Developer Liability</h2><p>A contentious issue is the extent of liability for protocol developers. Recent court cases have explored whether deploying smart contracts constitutes ongoing operation of a financial service.</p><h2>Path Forward</h2><p>Industry participants are advocating for clearer regulatory frameworks that recognize the unique characteristics of decentralized systems while maintaining appropriate protections.</p>",
+      "tags": ["DeFi", "Legal Challenges", "Compliance", "Smart Contracts"],
+      "featured": false
+    },
+    {
+      "id": "crypto-tax-reporting-2025",
+      "title": "Crypto Tax Reporting Requirements: 2025 Update",
+      "slug": "crypto-tax-reporting-2025",
+      "author": "Jennifer Liu",
+      "date": "2025-11-05",
+      "summary": "A comprehensive guide to the latest crypto tax reporting requirements across major jurisdictions.",
+      "content": "<p>Tax authorities worldwide have significantly enhanced their crypto reporting requirements in 2025, creating new compliance obligations for individuals and businesses.</p><h2>OECD Crypto-Asset Reporting Framework (CARF)</h2><p>Over 50 jurisdictions have now implemented CARF, requiring crypto exchanges and service providers to report customer transactions to tax authorities.</p><h2>Key Requirements by Jurisdiction</h2><h3>United States</h3><ul><li>Form 1099-DA for digital asset transactions</li><li>Broker reporting requirements effective 2025</li><li>Enhanced FBAR requirements for foreign crypto accounts</li></ul><h3>European Union</h3><ul><li>DAC8 directive requiring automatic information exchange</li><li>Harmonized reporting standards across member states</li></ul><h3>United Kingdom</h3><ul><li>Expanded reporting requirements for crypto asset service providers</li><li>Real-time reporting for certain large transactions</li></ul><h2>Compliance Best Practices</h2><p>To ensure compliance, taxpayers should:</p><ul><li>Maintain detailed transaction records</li><li>Use specialized crypto tax software</li><li>Consult with tax professionals experienced in digital assets</li><li>Stay informed of changing requirements</li></ul>",
+      "tags": ["Tax", "Compliance", "OECD", "Reporting"],
+      "featured": false
+    },
+    {
+      "id": "nft-legal-frameworks-copyright",
+      "title": "NFT Legal Frameworks: Copyright and Intellectual Property",
+      "slug": "nft-legal-frameworks-copyright",
+      "author": "David Kim",
+      "date": "2025-10-28",
+      "summary": "Understanding the complex intersection of NFTs, copyright law, and intellectual property rights.",
+      "content": "<p>Non-fungible tokens (NFTs) have created novel legal questions regarding intellectual property rights, with courts and regulators still grappling with fundamental issues.</p><h2>What Rights Does an NFT Purchase Convey?</h2><p>A common misconception is that purchasing an NFT transfers copyright. In most cases, buyers receive:</p><ul><li>The token itself (on-chain ownership record)</li><li>A license to display the associated artwork</li><li>Limited commercial use rights (depending on terms)</li></ul><p>The underlying copyright typically remains with the creator unless explicitly transferred through a separate agreement.</p><h2>Key Legal Issues</h2><h3>Unauthorized Minting</h3><p>Numerous cases involve NFTs minted without permission of the copyright holder, raising questions of infringement and platform liability.</p><h3>Smart Contract Terms</h3><p>The enforceability of terms embedded in smart contracts remains largely untested, particularly regarding:</p><ul><li>Royalty payments</li><li>Usage restrictions</li><li>Transferability limitations</li></ul><h2>Recent Case Law</h2><p>2025 has seen several landmark cases clarifying NFT-related rights, including decisions on:</p><ul><li>Fair use in the context of derivative NFTs</li><li>Platform liability for infringing content</li><li>Jurisdictional issues in cross-border disputes</li></ul><h2>Best Practices for Creators and Buyers</h2><p>Clear, written agreements specifying rights transfers and usage limitations are essential for all NFT transactions.</p>",
+      "tags": ["NFT", "Copyright", "Intellectual Property", "Legal Framework"],
+      "featured": false
+    }
+  ],
+  "complianceTopics": [
+    {
+      "id": "mica-regulation",
+      "name": "MiCA Regulation",
+      "slug": "mica-regulation",
+      "description": "Coverage of the Markets in Crypto-Assets regulation and its implementation across the European Union.",
+      "articles": ["mica-compliance-wallet-providers-2025", "stablecoin-regulations-global-overview"]
+    },
+    {
+      "id": "aml-kyc-requirements",
+      "name": "AML/KYC Requirements",
+      "slug": "aml-kyc-requirements",
+      "description": "Anti-money laundering and know-your-customer requirements for crypto businesses.",
+      "articles": ["mica-compliance-wallet-providers-2025"]
+    },
+    {
+      "id": "tax-reporting",
+      "name": "Tax & Reporting",
+      "slug": "tax-reporting",
+      "description": "Tax reporting obligations and international information exchange frameworks for crypto assets.",
+      "articles": ["crypto-tax-reporting-2025"]
+    },
+    {
+      "id": "defi-regulation",
+      "name": "DeFi Regulation",
+      "slug": "defi-regulation",
+      "description": "Regulatory approaches to decentralized finance protocols and platforms.",
+      "articles": ["defi-legal-challenges-2025"]
+    },
+    {
+      "id": "nft-legal-issues",
+      "name": "NFT Legal Issues",
+      "slug": "nft-legal-issues",
+      "description": "Legal frameworks surrounding non-fungible tokens, including intellectual property and copyright considerations.",
+      "articles": ["nft-legal-frameworks-copyright"]
+    }
+  ],
+  "team": [
+    {
+      "id": "barry-elad",
+      "name": "Barry Elad",
+      "role": "Editor-in-Chief",
+      "bio": "Barry has over 15 years of experience in financial regulation and crypto law. He previously served as counsel at major fintech companies and advises crypto startups on regulatory compliance."
+    },
+    {
+      "id": "sarah-chen",
+      "name": "Sarah Chen",
+      "role": "Senior Legal Analyst",
+      "bio": "Sarah specializes in international crypto regulation with a focus on stablecoins and payment systems. She holds an LLM in Financial Regulation from LSE."
+    },
+    {
+      "id": "michael-rodriguez",
+      "name": "Michael Rodriguez",
+      "role": "DeFi Legal Expert",
+      "bio": "Michael focuses on decentralized finance and smart contract law. He has published extensively on legal challenges in blockchain technology and advises DeFi protocols."
+    },
+    {
+      "id": "jennifer-liu",
+      "name": "Jennifer Liu",
+      "role": "Tax & Compliance Specialist",
+      "bio": "Jennifer is a CPA with expertise in crypto taxation and international tax reporting. She helps businesses navigate complex crypto tax obligations across jurisdictions."
+    },
+    {
+      "id": "david-kim",
+      "name": "David Kim",
+      "role": "IP & NFT Legal Counsel",
+      "bio": "David specializes in intellectual property law as it applies to digital assets and NFTs. He has represented both creators and platforms in IP disputes."
+    }
+  ]
+}
