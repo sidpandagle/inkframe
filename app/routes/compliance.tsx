@@ -48,7 +48,7 @@ export default function Compliance({ loaderData }: Route.ComponentProps) {
               to={`/compliance/${topic.slug}`}
               className="block group"
             >
-              <Card className="h-full card-modern overflow-hidden hover:shadow-xl transition-all duration-300 p-0">
+              <Card className="h-full card-modern overflow-hidden hover:shadow-xl transition-all duration-300 pt-0">
                 <div className="h-48 relative overflow-hidden">
                   <img
                     src={imageUrl}

@@ -52,7 +52,7 @@ export default function About({ loaderData }: Route.ComponentProps) {
           className="text-center justify-center"
         />
         <div className="grid md:grid-cols-3 gap-8">
-          <Card className="overflow-hidden card-modern group hover:shadow-xl transition-all duration-300 p-0">
+          <Card className="overflow-hidden card-modern group hover:shadow-xl transition-all duration-300 pt-0">
             <div className="h-48 relative overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop"
@@ -71,7 +71,7 @@ export default function About({ loaderData }: Route.ComponentProps) {
               </p>
             </CardContent>
           </Card>
-          <Card className="overflow-hidden card-modern group hover:shadow-xl transition-all duration-300 p-0">
+          <Card className="overflow-hidden card-modern group hover:shadow-xl transition-all duration-300 pt-0">
             <div className="h-48 relative overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=400&fit=crop"
@@ -90,7 +90,7 @@ export default function About({ loaderData }: Route.ComponentProps) {
               </p>
             </CardContent>
           </Card>
-          <Card className="overflow-hidden card-modern group hover:shadow-xl transition-all duration-300 p-0">
+          <Card className="overflow-hidden card-modern group hover:shadow-xl transition-all duration-300 pt-0">
             <div className="h-48 relative overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop"
@@ -127,7 +127,7 @@ export default function About({ loaderData }: Route.ComponentProps) {
             const imageUrl = member.image || defaultImage;
 
             return (
-              <Card key={member.id} className="overflow-hidden card-modern group hover:shadow-xl transition-all duration-300 p-0">
+              <Card key={member.id} className="overflow-hidden card-modern group hover:shadow-xl transition-all duration-300 pt-0">
                 <div className="h-48 relative overflow-hidden bg-primary/10">
                   <img
                     src={imageUrl}
