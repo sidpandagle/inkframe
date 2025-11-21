@@ -29,7 +29,7 @@ export function ArticleCard({ article, featured = false }: ArticleCardProps) {
   return (
     <Link to={`/articles/${article.slug}`} className="block group h-full">
       <Card
-        className={`h-full card-modern overflow-hidden p-0 ${
+        className={`h-full card-modern overflow-hidden pt-0 ${
           featured ? "border-primary/40 bg-gradient-to-br from-primary/5 to-transparent" : ""
         }`}
       >

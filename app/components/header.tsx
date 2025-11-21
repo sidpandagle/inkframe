@@ -1,14 +1,49 @@
 import { Link } from "react-router";
-import { BookOpen, Scale, Info, Mail, Menu } from "lucide-react";
+import {
+  BookOpen,
+  Scale,
+  Info,
+  Mail,
+  Menu,
+  ChevronDown,
+  Shield,
+  FileText,
+  Coins,
+  Building2,
+  TrendingUp,
+  Landmark,
+  Home,
+  FileCheck,
+  Lock,
+  ScrollText,
+} from "lucide-react";
 import { ThemeSwitcher } from "./theme-switcher";
 import { MobileNav } from "./mobile-nav";
-import { Search } from "./search";
 import { useState } from "react";
 import logoLight from "./logo-icon-light.svg";
 import logoDark from "./logo-icon-dark.svg";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const newsCategories = [
+    { name: "All Articles", slug: "/articles", icon: BookOpen },
+    { name: "Crypto Regulation", slug: "/articles?category=crypto-regulation", icon: Shield },
+    { name: "MiCA", slug: "/articles?category=mica", icon: Scale },
+    { name: "DeFi", slug: "/articles?category=defi", icon: Coins },
+    { name: "Banking", slug: "/articles?category=banking", icon: Building2 },
+    { name: "Fintech", slug: "/articles?category=fintech", icon: TrendingUp },
+    { name: "Legal Analysis", slug: "/articles?category=legal", icon: Landmark },
+    { name: "Policy", slug: "/articles?category=policy", icon: FileText },
+  ];
+
+  const resourceLinks = [
+    { name: "About Us", slug: "/about", icon: Info },
+    { name: "Contact", slug: "/contact", icon: Mail },
+    { name: "Terms of Service", slug: "/terms", icon: FileCheck },
+    { name: "Privacy Policy", slug: "/privacy", icon: Lock },
+    { name: "Disclaimer", slug: "/disclaimer", icon: ScrollText },
+  ];
 
   return (
     <>
@@ -33,15 +68,39 @@ export function Header() {
               </span>
             </Link>
 
-            <div className="hidden md:flex items-center gap-6">
-              <Search />
+            <div className="hidden lg:flex items-center gap-6">
               <Link
-                to="/articles"
+                to="/"
                 className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-smooth group"
               >
-                <BookOpen className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                <span>Articles</span>
+                <Home className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                <span>Home</span>
               </Link>
+
+              {/* News Dropdown */}
+              <div className="relative group/news">
+                <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-smooth">
+                  <BookOpen className="w-4 h-4 group-hover/news:scale-110 transition-transform" />
+                  <span>News</span>
+                  <ChevronDown className="w-3 h-3 group-hover/news:rotate-180 transition-transform" />
+                </button>
+                <div className="absolute top-full left-0 mt-2 w-64 bg-background border border-border rounded-lg shadow-xl opacity-0 invisible group-hover/news:opacity-100 group-hover/news:visible transition-all duration-200 py-2">
+                  {newsCategories.map((category) => {
+                    const Icon = category.icon;
+                    return (
+                      <Link
+                        key={category.slug}
+                        to={category.slug}
+                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors"
+                      >
+                        <Icon className="w-4 h-4" />
+                        <span>{category.name}</span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+
               <Link
                 to="/compliance"
                 className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-smooth group"
@@ -49,25 +108,43 @@ export function Header() {
                 <Scale className="w-4 h-4 group-hover:scale-110 transition-transform" />
                 <span>Compliance</span>
               </Link>
-              <Link
-                to="/about"
-                className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-smooth group"
-              >
-                <Info className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                <span>About</span>
-              </Link>
+
+              {/* Resources Dropdown */}
+              <div className="relative group/resources">
+                <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-smooth">
+                  <Info className="w-4 h-4 group-hover/resources:scale-110 transition-transform" />
+                  <span>Resources</span>
+                  <ChevronDown className="w-3 h-3 group-hover/resources:rotate-180 transition-transform" />
+                </button>
+                <div className="absolute top-full left-0 mt-2 w-56 bg-background border border-border rounded-lg shadow-xl opacity-0 invisible group-hover/resources:opacity-100 group-hover/resources:visible transition-all duration-200 py-2">
+                  {resourceLinks.map((link) => {
+                    const Icon = link.icon;
+                    return (
+                      <Link
+                        key={link.slug}
+                        to={link.slug}
+                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors"
+                      >
+                        <Icon className="w-4 h-4" />
+                        <span>{link.name}</span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+
               <ThemeSwitcher />
+
               <Link
                 to="/contact"
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-primary text-primary-foreground text-sm font-medium hover:shadow-lg hover:scale-105 transition-smooth"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg gradient-primary text-white text-sm font-medium hover:shadow-lg hover:scale-105 transition-smooth"
               >
                 <Mail className="w-4 h-4" />
                 <span>Contact</span>
               </Link>
             </div>
 
-            <div className="flex md:hidden items-center gap-3">
-              <Search />
+            <div className="flex lg:hidden items-center gap-3">
               <ThemeSwitcher />
               <button
                 onClick={() => setIsMobileMenuOpen(true)}
