@@ -8,6 +8,8 @@ import { PageContainer } from "~/components/page-container";
 import { ShareButtons } from "~/components/share-buttons";
 import { TableOfContents } from "~/components/table-of-contents";
 import { calculateReadingTime, formatDate } from "~/lib/utils";
+import { generateArticleSchema, generateBreadcrumbSchema } from "~/lib/structured-data";
+import { StructuredData } from "~/components/structured-data";
 import { Clock, User, Calendar } from "lucide-react";
 
 export function meta({ params }: Route.MetaArgs) {
@@ -53,15 +55,32 @@ export async function loader({ params }: Route.LoaderArgs) {
 export default function ArticleDetail({ loaderData }: Route.ComponentProps) {
   const { article, relatedArticles, readingTime } = loaderData;
 
+  const baseUrl = typeof window !== "undefined" ? window.location.origin : "https://inkframe.com";
+
+  // Generate structured data
+  const articleSchema = generateArticleSchema(article, baseUrl);
+  const breadcrumbSchema = generateBreadcrumbSchema(
+    [
+      { name: "Home", url: "/" },
+      { name: "Articles", url: "/articles" },
+      { name: article.title, url: `/articles/${article.slug}` },
+    ],
+    baseUrl
+  );
+
   return (
-    <PageContainer size="default">
-      {/* Breadcrumb */}
-      <Breadcrumb
-        items={[
-          { label: "Articles", href: "/articles" },
-          { label: article.title },
-        ]}
-      />
+    <>
+      <StructuredData data={articleSchema} />
+      <StructuredData data={breadcrumbSchema} />
+
+      <PageContainer size="default">
+        {/* Breadcrumb */}
+        <Breadcrumb
+          items={[
+            { label: "Articles", href: "/articles" },
+            { label: article.title },
+          ]}
+        />
 
       <div className="grid lg:grid-cols-[1fr_280px] gap-12">
         {/* Main Content */}
@@ -170,5 +189,6 @@ export default function ArticleDetail({ loaderData }: Route.ComponentProps) {
         </section>
       )}
     </PageContainer>
+    </>
   );
 }

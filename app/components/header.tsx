@@ -16,6 +16,7 @@ import {
   FileCheck,
   Lock,
   ScrollText,
+  HelpCircle,
 } from "lucide-react";
 import { ThemeSwitcher } from "./theme-switcher";
 import { MobileNav } from "./mobile-nav";
@@ -45,6 +46,8 @@ export function Header() {
   ];
 
   const resourceLinks = [
+    { name: "Resources Hub", slug: "/resources", icon: BookOpen },
+    { name: "FAQ", slug: "/faq", icon: HelpCircle },
     { name: "About Us", slug: "/about", icon: Info },
     { name: "Contact", slug: "/contact", icon: Mail },
     { name: "Terms of Service", slug: "/terms", icon: FileCheck },

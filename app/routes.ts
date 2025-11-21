@@ -6,6 +6,8 @@ export default [
   route("articles/:slug", "routes/articles.$slug.tsx"),
   route("compliance", "routes/compliance.tsx"),
   route("compliance/:slug", "routes/compliance.$slug.tsx"),
+  route("resources", "routes/resources.tsx"),
+  route("faq", "routes/faq.tsx"),
   route("about", "routes/about.tsx"),
   route("contact", "routes/contact.tsx"),
   route("terms", "routes/terms.tsx"),
