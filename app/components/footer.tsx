@@ -24,9 +24,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
           <div className="md:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4 group">
-              <div className="w-9 h-9 rounded-xl bg-gradient-primary flex items-center justify-center">
+              {/* <div className="w-9 h-9 rounded-xl bg-gradient-primary flex items-center justify-center">
                 <Sparkles className="w-5 h-5 text-primary-foreground" />
-              </div>
+              </div> */}
               <span className="text-xl font-bold text-display gradient-text">InkFrame</span>
             </Link>
             <p className="text-sm text-muted-foreground mb-6 max-w-sm leading-relaxed">

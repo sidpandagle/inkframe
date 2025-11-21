@@ -39,6 +39,16 @@ export default function Home({ loaderData }: Route.ComponentProps) {
     <div>
       {/* Hero Section */}
       <section className="relative gradient-hero py-12 md:py-20 lg:py-24 overflow-hidden min-h-[85vh] flex items-center">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1920&h=1080&fit=crop"
+            alt="Crypto and blockchain technology"
+            className="w-full h-full object-cover opacity-10 dark:opacity-5"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background/90"></div>
+        </div>
+
         {/* Decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 right-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>

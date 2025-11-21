@@ -52,34 +52,58 @@ export default function About({ loaderData }: Route.ComponentProps) {
           className="text-center justify-center"
         />
         <div className="grid md:grid-cols-3 gap-8">
-          <Card>
+          <Card className="overflow-hidden card-modern group hover:shadow-xl transition-all duration-300 p-0">
+            <div className="h-48 relative overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop"
+                alt="Authoritative Analysis"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-card/30"></div>
+            </div>
             <CardHeader>
-              <CardTitle>Authoritative Analysis</CardTitle>
+              <CardTitle className="group-hover:text-primary transition-colors">Authoritative Analysis</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground leading-relaxed">
                 We provide in-depth, well-researched analysis of regulatory
                 developments from experienced legal and compliance professionals.
               </p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="overflow-hidden card-modern group hover:shadow-xl transition-all duration-300 p-0">
+            <div className="h-48 relative overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=400&fit=crop"
+                alt="Practical Insights"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-card/30"></div>
+            </div>
             <CardHeader>
-              <CardTitle>Practical Insights</CardTitle>
+              <CardTitle className="group-hover:text-primary transition-colors">Practical Insights</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground leading-relaxed">
                 Our content bridges theory and practice, offering actionable
                 guidance for navigating complex compliance requirements.
               </p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="overflow-hidden card-modern group hover:shadow-xl transition-all duration-300 p-0">
+            <div className="h-48 relative overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop"
+                alt="Global Coverage"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-card/30"></div>
+            </div>
             <CardHeader>
-              <CardTitle>Global Coverage</CardTitle>
+              <CardTitle className="group-hover:text-primary transition-colors">Global Coverage</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground leading-relaxed">
                 We cover regulatory developments across major jurisdictions,
                 providing a comprehensive view of the global crypto legal
                 landscape.
@@ -97,17 +121,30 @@ export default function About({ loaderData }: Route.ComponentProps) {
           className="text-center justify-center"
         />
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {team.map((member: typeof team[0]) => (
-            <Card key={member.id}>
-              <CardHeader>
-                <CardTitle>{member.name}</CardTitle>
-                <p className="text-sm text-muted-foreground">{member.role}</p>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm">{member.bio}</p>
-              </CardContent>
-            </Card>
-          ))}
+          {team.map((member: typeof team[0]) => {
+            // Default professional image from Unsplash
+            const defaultImage = "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop";
+            const imageUrl = member.image || defaultImage;
+
+            return (
+              <Card key={member.id} className="overflow-hidden card-modern group hover:shadow-xl transition-all duration-300 p-0">
+                <div className="h-48 relative overflow-hidden bg-primary/10">
+                  <img
+                    src={imageUrl}
+                    alt={member.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+                <CardHeader>
+                  <CardTitle className="group-hover:text-primary transition-colors">{member.name}</CardTitle>
+                  <p className="text-sm text-muted-foreground font-medium">{member.role}</p>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{member.bio}</p>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </section>
 

@@ -1,9 +1,11 @@
 import { Link } from "react-router";
-import { BookOpen, Scale, Info, Mail, Menu, Sparkles } from "lucide-react";
+import { BookOpen, Scale, Info, Mail, Menu } from "lucide-react";
 import { ThemeSwitcher } from "./theme-switcher";
 import { MobileNav } from "./mobile-nav";
 import { Search } from "./search";
 import { useState } from "react";
+import logoLight from "./logo-icon-light.svg";
+import logoDark from "./logo-icon-dark.svg";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -14,9 +16,18 @@ export function Header() {
         <nav className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between gap-4">
             <Link to="/" className="flex items-center gap-2 group shrink-0">
-              <div className="w-9 h-9 rounded-xl bg-gradient-primary flex items-center justify-center transform group-hover:scale-110 transition-transform">
-                <Sparkles className="w-5 h-5 text-primary-foreground" />
-              </div>
+              {/* <div className="w-9 h-9 flex items-center justify-center transform group-hover:scale-110 transition-transform">
+                <img
+                  src={logoLight}
+                  alt="InkFrame"
+                  className="w-9 h-9 block dark:hidden"
+                />
+                <img
+                  src={logoDark}
+                  alt="InkFrame"
+                  className="w-9 h-9 hidden dark:block"
+                />
+              </div> */}
               <span className="text-2xl font-bold text-display gradient-text">
                 InkFrame
               </span>

@@ -8,6 +8,7 @@ export interface Article {
   content: string;
   tags: string[];
   featured?: boolean;
+  image?: string;
 }
 
 export interface ComplianceTopic {
@@ -16,6 +17,7 @@ export interface ComplianceTopic {
   slug: string;
   description: string;
   articles: string[]; // Article IDs
+  image?: string;
 }
 
 export interface TeamMember {
