@@ -4,6 +4,8 @@ export default [
   index("routes/home.tsx"),
   route("articles", "routes/articles.tsx"),
   route("articles/:slug", "routes/articles.$slug.tsx"),
+  route("authors", "routes/authors.tsx"),
+  route("authors/:slug", "routes/authors.$slug.tsx"),
   route("compliance", "routes/compliance.tsx"),
   route("compliance/:slug", "routes/compliance.$slug.tsx"),
   route("resources", "routes/resources.tsx"),

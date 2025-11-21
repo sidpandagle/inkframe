@@ -1,5 +1,5 @@
 import type { Route } from "./+types/articles.$slug";
-import { getArticleBySlug, getRelatedArticles } from "~/lib/data";
+import { getArticleBySlug, getRelatedArticles, getAllAuthors } from "~/lib/data";
 import { Link } from "react-router";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent } from "~/components/ui/card";
@@ -45,15 +45,21 @@ export async function loader({ params }: Route.LoaderArgs) {
   // Calculate reading time
   const readingTime = calculateReadingTime(article.content);
 
+  // Get author slug for linking
+  const authors = getAllAuthors();
+  const author = authors.find((a) => a.name === article.author);
+  const authorSlug = author?.slug || article.author.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
   return {
     article,
     relatedArticles,
     readingTime,
+    authorSlug,
   };
 }
 
 export default function ArticleDetail({ loaderData }: Route.ComponentProps) {
-  const { article, relatedArticles, readingTime } = loaderData;
+  const { article, relatedArticles, readingTime, authorSlug } = loaderData;
 
   const baseUrl = typeof window !== "undefined" ? window.location.origin : "https://inkframe.com";
 
@@ -100,7 +106,12 @@ export default function ArticleDetail({ loaderData }: Route.ComponentProps) {
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6 pb-6 border-b border-border">
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4" />
-                <span className="font-medium">{article.author}</span>
+                <Link
+                  to={`/authors/${authorSlug}`}
+                  className="font-medium hover:text-primary transition-colors"
+                >
+                  {article.author}
+                </Link>
               </div>
               <span>•</span>
               <div className="flex items-center gap-2">
@@ -146,13 +157,25 @@ export default function ArticleDetail({ loaderData }: Route.ComponentProps) {
             dangerouslySetInnerHTML={{ __html: article.content }}
           />
 
-          {/* Author Bio (placeholder) */}
+          {/* Author Bio */}
           <div className="mt-12 p-6 bg-muted/50 rounded-lg border border-border">
             <h3 className="text-lg font-semibold mb-2">About the Author</h3>
-            <p className="text-sm text-muted-foreground">
-              <span className="font-medium text-foreground">{article.author}</span> is a contributing writer
-              at InkFrame, specializing in {article.tags.slice(0, 2).join(" and ")} regulation.
+            <p className="text-sm text-muted-foreground mb-3">
+              <Link
+                to={`/authors/${authorSlug}`}
+                className="font-medium text-foreground hover:text-primary transition-colors"
+              >
+                {article.author}
+              </Link>{" "}
+              is a contributing writer at InkFrame, specializing in{" "}
+              {article.tags.slice(0, 2).join(" and ")} regulation.
             </p>
+            <Link
+              to={`/authors/${authorSlug}`}
+              className="text-sm text-primary hover:underline"
+            >
+              View all articles by {article.author} →
+            </Link>
           </div>
         </article>
 

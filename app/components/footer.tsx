@@ -72,6 +72,15 @@ export function Footer() {
               </li>
               <li>
                 <Link
+                  to="/authors"
+                  className="text-sm text-muted-foreground hover:text-primary transition-smooth flex items-center gap-2 group"
+                >
+                  <span className="w-1 h-1 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  Authors
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/resources"
                   className="text-sm text-muted-foreground hover:text-primary transition-smooth flex items-center gap-2 group"
                 >

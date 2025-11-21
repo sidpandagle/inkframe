@@ -16,6 +16,7 @@ import {
   FileCheck,
   Lock,
   ScrollText,
+  Users,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -72,6 +73,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
   const mainLinks = [
     { to: "/", icon: Home, label: "Home" },
     { to: "/compliance", icon: Scale, label: "Compliance" },
+    { to: "/authors", icon: Users, label: "Authors" },
   ];
 
   return (

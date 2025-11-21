@@ -113,3 +113,57 @@ export function getRelatedArticles(articleId: string, limit: number = 3): Articl
 
   return related;
 }
+
+export interface AuthorProfile {
+  name: string;
+  slug: string;
+  articleCount: number;
+  articles: Article[];
+  recentArticles: Article[];
+  tags: string[];
+}
+
+export function getAllAuthors(): AuthorProfile[] {
+  const authorMap = new Map<string, Article[]>();
+
+  // Group articles by author
+  data.articles.forEach(article => {
+    const existing = authorMap.get(article.author) || [];
+    authorMap.set(article.author, [...existing, article]);
+  });
+
+  // Create author profiles
+  return Array.from(authorMap.entries())
+    .map(([name, articles]) => {
+      // Sort articles by date
+      const sortedArticles = articles.sort((a, b) =>
+        new Date(b.date).getTime() - new Date(a.date).getTime()
+      );
+
+      // Get unique tags
+      const tags = Array.from(
+        new Set(articles.flatMap(article => article.tags))
+      ).sort();
+
+      return {
+        name,
+        slug: name.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+        articleCount: articles.length,
+        articles: sortedArticles,
+        recentArticles: sortedArticles.slice(0, 3),
+        tags,
+      };
+    })
+    .sort((a, b) => b.articleCount - a.articleCount);
+}
+
+export function getAuthorBySlug(slug: string): AuthorProfile | undefined {
+  const authors = getAllAuthors();
+  return authors.find(author => author.slug === slug);
+}
+
+export function getArticlesByAuthor(authorName: string): Article[] {
+  return data.articles
+    .filter(article => article.author === authorName)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}

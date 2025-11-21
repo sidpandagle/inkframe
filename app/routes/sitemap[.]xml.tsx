@@ -1,9 +1,10 @@
 import type { Route } from "./+types/sitemap[.]xml";
-import { getAllArticles, getAllComplianceTopics } from "~/lib/data";
+import { getAllArticles, getAllComplianceTopics, getAllAuthors } from "~/lib/data";
 import {
   generateSitemap,
   generateArticleUrls,
   generateComplianceUrls,
+  generateAuthorUrls,
   generateStaticUrls,
 } from "~/lib/sitemap";
 
@@ -14,9 +15,10 @@ export async function loader({}: Route.LoaderArgs) {
   const staticUrls = generateStaticUrls();
   const articleUrls = generateArticleUrls(getAllArticles());
   const complianceUrls = generateComplianceUrls(getAllComplianceTopics());
+  const authorUrls = generateAuthorUrls(getAllAuthors());
 
   // Combine all URLs
-  const allUrls = [...staticUrls, ...articleUrls, ...complianceUrls];
+  const allUrls = [...staticUrls, ...articleUrls, ...complianceUrls, ...authorUrls];
 
   // Generate sitemap XML
   const sitemap = generateSitemap(allUrls, { baseUrl });

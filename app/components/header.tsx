@@ -17,6 +17,7 @@ import {
   Lock,
   ScrollText,
   HelpCircle,
+  Users,
 } from "lucide-react";
 import { ThemeSwitcher } from "./theme-switcher";
 import { MobileNav } from "./mobile-nav";
@@ -115,6 +116,14 @@ export function Header() {
               >
                 <Scale className="w-4 h-4 group-hover:scale-110 transition-transform" />
                 <span>Compliance</span>
+              </Link>
+
+              <Link
+                to="/authors"
+                className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-smooth group"
+              >
+                <Users className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                <span>Authors</span>
               </Link>
 
               {/* Resources Dropdown */}

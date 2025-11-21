@@ -1,4 +1,5 @@
 import type { Article, ComplianceTopic } from "~/types";
+import type { AuthorProfile } from "~/lib/data";
 
 export interface SitemapUrl {
   loc: string;
@@ -71,6 +72,17 @@ export function generateComplianceUrls(topics: ComplianceTopic[]): SitemapUrl[] 
 }
 
 /**
+ * Generate sitemap URLs from author profiles
+ */
+export function generateAuthorUrls(authors: AuthorProfile[]): SitemapUrl[] {
+  return authors.map((author) => ({
+    loc: `/authors/${author.slug}`,
+    changefreq: "monthly" as const,
+    priority: 0.7,
+  }));
+}
+
+/**
  * Generate static page URLs
  */
 export function generateStaticUrls(): SitemapUrl[] {
@@ -84,6 +96,11 @@ export function generateStaticUrls(): SitemapUrl[] {
       loc: "/articles",
       changefreq: "daily" as const,
       priority: 0.9,
+    },
+    {
+      loc: "/authors",
+      changefreq: "weekly" as const,
+      priority: 0.7,
     },
     {
       loc: "/compliance",
