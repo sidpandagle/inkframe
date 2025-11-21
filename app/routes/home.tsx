@@ -64,7 +64,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative gradient-hero py-12 md:py-20 lg:py-24 overflow-hidden min-h-[85vh] flex items-center">
+      <section className="relative gradient-hero py-12 md:py-20 lg:py-24 overflow-hidden min-h-[60vh] md:min-h-[65vh] flex items-center">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <img

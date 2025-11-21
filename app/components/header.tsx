@@ -19,7 +19,14 @@ import {
 } from "lucide-react";
 import { ThemeSwitcher } from "./theme-switcher";
 import { MobileNav } from "./mobile-nav";
+import { Search } from "./search";
 import { useState } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "~/components/ui/dropdown-menu";
 import logoLight from "./logo-icon-light.svg";
 import logoDark from "./logo-icon-dark.svg";
 
@@ -78,28 +85,26 @@ export function Header() {
               </Link>
 
               {/* News Dropdown */}
-              <div className="relative group/news">
-                <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-smooth">
-                  <BookOpen className="w-4 h-4 group-hover/news:scale-110 transition-transform" />
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-smooth">
+                  <BookOpen className="w-4 h-4" />
                   <span>News</span>
-                  <ChevronDown className="w-3 h-3 group-hover/news:rotate-180 transition-transform" />
-                </button>
-                <div className="absolute top-full left-0 mt-2 w-64 bg-background border border-border rounded-lg shadow-xl opacity-0 invisible group-hover/news:opacity-100 group-hover/news:visible transition-all duration-200 py-2">
+                  <ChevronDown className="w-3 h-3 transition-transform" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-64">
                   {newsCategories.map((category) => {
                     const Icon = category.icon;
                     return (
-                      <Link
-                        key={category.slug}
-                        to={category.slug}
-                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors"
-                      >
-                        <Icon className="w-4 h-4" />
-                        <span>{category.name}</span>
+                      <Link key={category.slug} to={category.slug}>
+                        <DropdownMenuItem className="flex items-center gap-3 py-2.5">
+                          <Icon className="w-4 h-4" />
+                          <span>{category.name}</span>
+                        </DropdownMenuItem>
                       </Link>
                     );
                   })}
-                </div>
-              </div>
+                </DropdownMenuContent>
+              </DropdownMenu>
 
               <Link
                 to="/compliance"
@@ -110,29 +115,28 @@ export function Header() {
               </Link>
 
               {/* Resources Dropdown */}
-              <div className="relative group/resources">
-                <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-smooth">
-                  <Info className="w-4 h-4 group-hover/resources:scale-110 transition-transform" />
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-smooth">
+                  <Info className="w-4 h-4" />
                   <span>Resources</span>
-                  <ChevronDown className="w-3 h-3 group-hover/resources:rotate-180 transition-transform" />
-                </button>
-                <div className="absolute top-full left-0 mt-2 w-56 bg-background border border-border rounded-lg shadow-xl opacity-0 invisible group-hover/resources:opacity-100 group-hover/resources:visible transition-all duration-200 py-2">
+                  <ChevronDown className="w-3 h-3 transition-transform" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56">
                   {resourceLinks.map((link) => {
                     const Icon = link.icon;
                     return (
-                      <Link
-                        key={link.slug}
-                        to={link.slug}
-                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors"
-                      >
-                        <Icon className="w-4 h-4" />
-                        <span>{link.name}</span>
+                      <Link key={link.slug} to={link.slug}>
+                        <DropdownMenuItem className="flex items-center gap-3 py-2.5">
+                          <Icon className="w-4 h-4" />
+                          <span>{link.name}</span>
+                        </DropdownMenuItem>
                       </Link>
                     );
                   })}
-                </div>
-              </div>
+                </DropdownMenuContent>
+              </DropdownMenu>
 
+              <Search />
               <ThemeSwitcher />
 
               <Link

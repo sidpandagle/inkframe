@@ -90,3 +90,26 @@ export function getCategoryCount(categorySlug: string): number {
     article.tags.some(tag => tag.toLowerCase().includes(normalizedCategory))
   ).length;
 }
+
+export function getRelatedArticles(articleId: string, limit: number = 3): Article[] {
+  const currentArticle = data.articles.find(a => a.id === articleId);
+  if (!currentArticle) return [];
+
+  // Find articles with shared tags
+  const related = data.articles
+    .filter(article => {
+      if (article.id === articleId) return false;
+      return article.tags.some(tag => currentArticle.tags.includes(tag));
+    })
+    .sort((a, b) => {
+      // Sort by number of shared tags
+      const aSharedTags = a.tags.filter(tag => currentArticle.tags.includes(tag)).length;
+      const bSharedTags = b.tags.filter(tag => currentArticle.tags.includes(tag)).length;
+      if (bSharedTags !== aSharedTags) return bSharedTags - aSharedTags;
+      // Then by date
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    })
+    .slice(0, limit);
+
+  return related;
+}
