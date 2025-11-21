@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { Newsletter } from "~/components/newsletter";
-import { Twitter, Linkedin, Github, Mail, Sparkles } from "lucide-react";
+import { Twitter, Linkedin, Github, Mail, Sparkles, Rss } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -69,6 +69,35 @@ export function Footer() {
                   <span className="w-1 h-1 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   Compliance
                 </Link>
+              </li>
+              <li>
+                <Link
+                  to="/resources"
+                  className="text-sm text-muted-foreground hover:text-primary transition-smooth flex items-center gap-2 group"
+                >
+                  <span className="w-1 h-1 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  Resources
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/faq"
+                  className="text-sm text-muted-foreground hover:text-primary transition-smooth flex items-center gap-2 group"
+                >
+                  <span className="w-1 h-1 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  FAQ
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="/rss.xml"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-primary transition-smooth flex items-center gap-2 group"
+                >
+                  <Rss className="w-3 h-3 opacity-70 group-hover:opacity-100" />
+                  RSS Feed
+                </a>
               </li>
             </ul>
           </div>
